@@ -1,0 +1,11 @@
+postgres:
+  host: localhost
+  port: 5432
+  database: shopsphere_oltp
+  username: postgres
+  password: 08102004
+
+export:
+  base_directory: ../landing
+  create_date_folder: true
+  delimiter: ","
