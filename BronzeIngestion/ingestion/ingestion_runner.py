@@ -5,6 +5,7 @@ from ingestion.bronze_ingestor import BronzeIngestor
 
 from services.metadata_service import MetadataService
 from services.file_discovery_service import FileDiscoveryService
+from services.quarantine_service import QuarantineService
 
 from utils.config_loader import ConfigLoader
 from utils.logger import LoggerFactory
@@ -28,6 +29,8 @@ class IngestionRunner:
 
         self.discovery = FileDiscoveryService()
 
+        self.quarantine = QuarantineService()
+
     def run(self):
 
         project_root = Path(__file__).resolve().parent.parent.parent
@@ -40,6 +43,11 @@ class IngestionRunner:
         bronze_path = (
             project_root /
             self.config["bronze"]["base_path"]
+        )
+
+        quarantine_path = (
+            project_root /
+            self.config["quarantine"]["base_path"]
         )
 
         pipeline_name = self.config["pipeline"]["name"]
@@ -119,6 +127,18 @@ class IngestionRunner:
                     table_name,
                     processing_date,
                     str(ex)
+                )
+
+                csv_file = (
+                    landing_path
+                    / processing_date
+                    / f"{table_name}.csv"
+                )
+
+                self.quarantine.move_file(
+                    str(csv_file),
+                    str(quarantine_path),
+                    processing_date
                 )
 
                 self.logger.exception(ex)

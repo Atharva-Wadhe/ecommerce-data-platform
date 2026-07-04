@@ -15,6 +15,9 @@ landing:
 bronze:
   base_path: data/bronze
 
+quarantine:
+  base_path: data/quarantine
+
 tables:
 
   - name: orders

@@ -67,22 +67,18 @@ class BronzeIngestor:
 
         df = (
             df
-
             .withColumn(
                 "processing_date",
                 lit(processing_date)
             )
-
             .withColumn(
                 "pipeline_name",
                 lit(pipeline_name)
             )
-
             .withColumn(
                 "source_file",
                 lit(csv_path.name)
             )
-
             .withColumn(
                 "ingestion_timestamp",
                 current_timestamp()
