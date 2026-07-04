@@ -1,0 +1,36 @@
+tables:
+
+  - name: orders
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: customers
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: order_items
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: payments
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: reviews
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: products
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: sellers
+    delimiter: ","
+    header: true
+    infer_schema: true

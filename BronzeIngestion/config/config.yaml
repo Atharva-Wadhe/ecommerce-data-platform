@@ -1,0 +1,53 @@
+postgres:
+  host: localhost
+  port: 5432
+  database: shopsphere_oltp
+  username: postgres
+  password: 08102004
+
+pipeline:
+  name: bronze_ingestion_pipeline
+  processing_date: "2017-10-01"
+
+landing:
+  base_path: landing
+
+bronze:
+  base_path: data/bronze
+
+tables:
+
+  - name: orders
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: customers
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: order_items
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: payments
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: reviews
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: products
+    delimiter: ","
+    header: true
+    infer_schema: true
+
+  - name: sellers
+    delimiter: ","
+    header: true
+    infer_schema: true
