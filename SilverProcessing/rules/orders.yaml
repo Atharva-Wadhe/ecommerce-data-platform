@@ -1,0 +1,20 @@
+table: orders
+
+rules:
+  - type: not_null
+    column: order_id
+
+  - type: unique
+    column: order_id
+
+  - type: accepted_values
+    column: order_status
+    values:
+      - approved
+      - delivered
+      - shipped
+      - canceled
+      - created
+      - invoiced
+      - processing
+      - unavailable
