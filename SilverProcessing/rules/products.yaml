@@ -1,0 +1,11 @@
+table: products
+
+rules:
+  - type: not_null
+    column: product_id
+
+  - type: not_null
+    column: product_category_name
+
+  - type: unique
+    column: product_id

@@ -1,0 +1,16 @@
+table: payments
+
+rules:
+  - type: not_null
+    column: order_id
+
+  - type: not_null
+    column: payment_value
+
+  - type: accepted_values
+    column: payment_type
+    values:
+      - credit_card
+      - debit_card
+      - voucher
+      - boleto

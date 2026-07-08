@@ -1,0 +1,11 @@
+table: customers
+
+rules:
+  - type: not_null
+    column: customer_id
+
+  - type: not_null
+    column: customer_unique_id
+
+  - type: unique
+    column: customer_id

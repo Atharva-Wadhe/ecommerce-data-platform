@@ -1,0 +1,17 @@
+table: reviews
+
+rules:
+  - type: not_null
+    column: review_id
+
+  - type: not_null
+    column: order_id
+
+  - type: accepted_values
+    column: review_score
+    values:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5

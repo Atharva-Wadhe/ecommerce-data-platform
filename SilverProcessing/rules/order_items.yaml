@@ -1,0 +1,14 @@
+table: order_items
+
+rules:
+  - type: not_null
+    column: order_id
+
+  - type: not_null
+    column: product_id
+
+  - type: not_null
+    column: price
+
+  - type: unique
+    column: order_item_id

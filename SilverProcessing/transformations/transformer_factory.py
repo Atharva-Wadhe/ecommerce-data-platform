@@ -24,3 +24,7 @@ class TransformerFactory:
         if transformer_cls is None:
             raise ValueError(f"No transformer available for {table_name}")
         return transformer_cls()
+
+    @classmethod
+    def has_transformer(cls, table_name):
+        return table_name in cls.TRANSFORMERS

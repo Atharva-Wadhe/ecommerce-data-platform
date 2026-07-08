@@ -1,5 +1,4 @@
-from BronzeIngestion.services.postgres_service import PostgresService
-
+from services.postgres_service import PostgresService
 from models.validation_result import ValidationResult
 from models.validation_summary import ValidationSummary
 

@@ -5,12 +5,12 @@ import pandas as pd
 
 from utils.config_loader import ConfigLoader
 
+
 class PostgresService:
 
-    def __init__(self):
+    def __init__(self, config_path="config/config.yaml"):
 
-        config = ConfigLoader.load()
-
+        config = ConfigLoader.load(config_path)
         db = config["postgres"]
 
         self.engine = create_engine(
