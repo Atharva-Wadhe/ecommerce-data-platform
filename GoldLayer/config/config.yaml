@@ -5,9 +5,17 @@ postgres:
   username: postgres
   password: 08102004
 
+spark:
+  jars:
+    - D:/Spark/jars/postgresql-42.7.7.jar
+
 pipeline:
   name: gold_warehouse_pipeline
   processing_date: "2017-10-01"
+
+loader:
+  name: gold_dw_loader
+  target_schema: warehouse
 
 silver:
   base_path: data/silver
