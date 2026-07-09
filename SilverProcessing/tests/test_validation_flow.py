@@ -12,7 +12,8 @@ class ValidationFlowTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.spark = SparkSessionFactory.create()
-        cls.project_root = Path(__file__).resolve().parents[1]
+        # repository root (two levels up from tests folder)
+        cls.project_root = Path(__file__).resolve().parents[2]
         cls.bronze_path = str(cls.project_root / "data" / "bronze")
         cls.silver_path = str(cls.project_root / "data" / "silver")
 
@@ -27,10 +28,12 @@ class ValidationFlowTests(unittest.TestCase):
             self.silver_path,
         )
 
-        _, summary = runner.run(
+        exec_result = runner.run(
             table_name="orders",
             processing_date="2017-10-01",
         )
+
+        summary = exec_result.summary
 
         self.assertTrue(summary.overall_passed)
         self.assertEqual(summary.total_records, 128)

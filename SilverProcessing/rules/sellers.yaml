@@ -4,6 +4,9 @@ rules:
   - type: not_null
     column: seller_id
 
+  - type: unique
+    column: seller_id
+
   - type: not_null
     column: seller_city
 

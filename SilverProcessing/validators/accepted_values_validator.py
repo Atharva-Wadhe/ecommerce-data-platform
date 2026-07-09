@@ -10,15 +10,10 @@ class AcceptedValuesValidator(BaseValidator):
     def validate(self, df, total_records):
         values = self.rule["values"]
         total = total_records
-        failed = (
-            df
-            .filter(
-                ~col(self.column).isin(values)
-            )
-            .count()
-        )
+        failed_df = df.filter(~col(self.column).isin(values))
+        failed = failed_df.count()
 
-        return ValidationResult(
+        result = ValidationResult(
             rule_name=self.rule_name,
             column_name=self.column,
             passed=failed == 0,
@@ -26,3 +21,5 @@ class AcceptedValuesValidator(BaseValidator):
             total_records=total,
             message=f"{failed} invalid values"
         )
+
+        return result, failed_df

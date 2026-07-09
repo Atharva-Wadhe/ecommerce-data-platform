@@ -1,6 +1,9 @@
 from pathlib import Path
 
+from pyspark.sql import functions as F
+
 from services.quality_service import QualityService
+from services.quarantine_service import QuarantineService
 from validation.validation_engine import ValidationEngine
 
 
@@ -18,6 +21,7 @@ class ValidationRunner:
         self.silver_path = silver_path
         self.pipeline_name = pipeline_name
         self.quality_service = QualityService()
+        self.quarantine_service = QuarantineService()
 
     def run(
         self,
@@ -41,9 +45,10 @@ class ValidationRunner:
             / f"{table_name}.yaml"
         )
 
-        engine = ValidationEngine(
-            rules
-        )
+        engine = ValidationEngine(self.spark, rules)
+
+        # add stable row identifier for set operations
+        df = df.withColumn("__row_id", F.monotonically_increasing_id())
 
         total_records = df.count()
 
@@ -60,22 +65,44 @@ class ValidationRunner:
             )
 
         try:
-            results = engine.validate(
+            exec_result = engine.validate(
                 table_name,
                 df,
                 total_records
             )
 
+            # persist individual rule results
             if quality_run_id is not None:
-                for result in results.results:
+                for result in exec_result.summary.results:
                     self.quality_service.insert_result(
                         quality_run_id,
                         result
                     )
 
+                # write quarantines per rule
+                for rule_name, row_id_df in exec_result.rule_failed_dfs.items():
+                    # join back to get full rows for this rule
+                    failed_rows = exec_result.failed_df.join(row_id_df, on="__row_id", how="inner")
+                    # find rule metadata (column) from summary
+                    column = None
+                    for r in exec_result.summary.results:
+                        if r.rule_name == rule_name:
+                            column = r.column_name
+                            break
+
+                    self.quarantine_service.log_quarantine(
+                        quality_run_id,
+                        self.pipeline_name,
+                        table_name,
+                        processing_date,
+                        column,
+                        rule_name,
+                        failed_rows,
+                    )
+
                 self.quality_service.complete_run(
                     quality_run_id,
-                    results
+                    exec_result.summary
                 )
 
         except Exception:
@@ -86,4 +113,4 @@ class ValidationRunner:
         finally:
             df.unpersist()
 
-        return df, results
+        return exec_result

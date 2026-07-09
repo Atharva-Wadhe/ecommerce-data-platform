@@ -1,0 +1,25 @@
+postgres:
+  host: localhost
+  port: 5432
+  database: shopsphere_dw
+  username: postgres
+  password: 08102004
+
+pipeline:
+  name: gold_warehouse_pipeline
+  processing_date: "2017-10-01"
+
+silver:
+  base_path: data/silver
+
+gold:
+  base_path: data/gold
+
+dimensions:
+  - customers
+  - products
+  - sellers
+  - dates
+
+facts:
+  - orders

@@ -5,10 +5,19 @@ rules:
     column: order_id
 
   - type: not_null
+    column: order_item_id
+
+  - type: not_null
     column: product_id
 
   - type: not_null
     column: price
 
-  - type: unique
-    column: order_item_id
+  - type: range
+    column: price
+    min: 0
+
+  - type: composite_unique
+    columns:
+      - order_id
+      - order_item_id

@@ -9,11 +9,10 @@ class NullValidator(BaseValidator):
 
     def validate(self, df, total_records):
         total = total_records
-        failed = df.filter(
-            col(self.column).isNull()
-        ).count()
+        failed_df = df.filter(col(self.column).isNull())
+        failed = failed_df.count()
 
-        return ValidationResult(
+        result = ValidationResult(
             rule_name=self.rule_name,
             column_name=self.column,
             passed=failed == 0,
@@ -21,3 +20,5 @@ class NullValidator(BaseValidator):
             total_records=total,
             message=f"{failed} NULL values"
         )
+
+        return result, failed_df

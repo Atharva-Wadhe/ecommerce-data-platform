@@ -30,6 +30,7 @@ class SilverPipelineRunner:
             spark,
             bronze_path,
             silver_path,
+            pipeline_name="silver_transformation",
         )
 
     def discover_tables(self):
@@ -63,23 +64,33 @@ class SilverPipelineRunner:
             print(f"Processing date: {self.processing_date}")
 
             try:
-                _, summary = self.validation_runner.run(
+                exec_result = self.validation_runner.run(
                     table_name=table_name,
                     processing_date=self.processing_date,
                 )
 
+                summary = exec_result.summary
                 print(f"Validation complete: {table_name} -> passed={summary.overall_passed}")
                 print(summary)
 
-                if summary.overall_passed:
-                    transformed_df = self.transformation_runner.run(
+                failed_count = exec_result.failed_df.count()
+                valid_count = exec_result.valid_df.count()
+
+                print(f"Found {failed_count} invalid rows and {valid_count} valid rows for {table_name}")
+
+                if valid_count > 0:
+                    transformed_df = self.transformation_runner.run_df(
                         table_name=table_name,
+                        df=exec_result.valid_df,
                         processing_date=self.processing_date,
                     )
-                    rows_written = transformed_df.count()
-                    print(f"Transformation complete for {table_name}: {rows_written} rows written")
+                    if transformed_df is not None:
+                        rows_written = transformed_df.count()
+                        print(f"Transformation complete for {table_name}: {rows_written} rows written")
+                    else:
+                        print(f"Transformation skipped for {table_name}: already processed")
                 else:
-                    print(f"Skipping transformation for {table_name} because validation failed")
+                    print(f"No valid rows to transform for {table_name}")
 
                 processed.append((table_name, summary))
 

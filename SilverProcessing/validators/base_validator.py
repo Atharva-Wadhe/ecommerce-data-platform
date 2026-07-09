@@ -15,4 +15,9 @@ class BaseValidator(ABC):
         df,
         total_records
     ):
+        """Validate should return a tuple: (ValidationResult, failed_df)
+
+        - ValidationResult: metadata about the rule execution
+        - failed_df: Spark DataFrame containing rows that violated the rule
+        """
         pass

@@ -4,8 +4,14 @@ rules:
   - type: not_null
     column: review_id
 
+  - type: unique
+    column: review_id
+
   - type: not_null
     column: order_id
+
+  - type: not_null
+    column: review_score
 
   - type: accepted_values
     column: review_score

@@ -9,15 +9,19 @@ class DuplicateValidator(BaseValidator):
 
     def validate(self, df, total_records):
         total = total_records
-        failed = (
+        # Identify duplicated key values and join back to original rows
+        dup_keys = (
             df
             .groupBy(self.column)
             .agg(count("*").alias("cnt"))
             .filter("cnt > 1")
-            .count()
+            .select(self.column)
         )
 
-        return ValidationResult(
+        failed_df = df.join(dup_keys, on=self.column, how="inner")
+        failed = failed_df.count()
+
+        result = ValidationResult(
             rule_name=self.rule_name,
             column_name=self.column,
             passed=failed == 0,
@@ -25,3 +29,5 @@ class DuplicateValidator(BaseValidator):
             total_records=total,
             message=f"{failed} duplicate keys"
         )
+
+        return result, failed_df

@@ -4,6 +4,8 @@ from pathlib import Path
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
+from pyspark.sql.types import StructType, StructField, StringType, TimestampType
+from datetime import datetime
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -24,10 +26,15 @@ class OrdersTransformerTests(unittest.TestCase):
         cls.spark.stop()
 
     def test_orders_transformer_standardizes_status_and_dates(self):
-        df = self.spark.createDataFrame(
-            [("  DELIVERED ", "2017-10-01 00:03:00")],
-            ["order_status", "order_purchase_timestamp"],
-        )
+        schema = StructType([
+            StructField("order_status", StringType(), True),
+            StructField("order_purchase_timestamp", TimestampType(), True),
+        ])
+
+        ts = datetime.strptime("2017-10-01 00:03:00", "%Y-%m-%d %H:%M:%S")
+        df = self.spark.createDataFrame([
+            ("  DELIVERED ", ts)
+        ], schema=schema)
 
         transformer = OrdersTransformer()
         transformed = transformer.transform(df, "2017-10-01")

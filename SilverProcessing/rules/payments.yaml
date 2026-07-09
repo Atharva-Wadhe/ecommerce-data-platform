@@ -5,7 +5,17 @@ rules:
     column: order_id
 
   - type: not_null
+    column: payment_sequential
+
+  - type: not_null
     column: payment_value
+
+  - type: range
+    column: payment_value
+    min: 0
+
+  - type: not_null
+    column: payment_type
 
   - type: accepted_values
     column: payment_type
@@ -14,3 +24,8 @@ rules:
       - debit_card
       - voucher
       - boleto
+
+  - type: composite_unique
+    columns:
+      - order_id
+      - payment_sequential
