@@ -3,6 +3,7 @@ from pathlib import Path
 from pyspark.sql import functions as F
 
 from facts.orders_fact import OrdersFact
+from warehouse.dimension_lookup_service import DimensionLookupService
 from warehouse.warehouse_writer import WarehouseWriter
 from models.warehouse_result import WarehouseResult
 
@@ -19,50 +20,35 @@ class FactBuilder:
             raise ValueError(f"No fact builder implemented for {table_name}")
 
         dfs = {
-            "orders": self.spark.read.parquet(str(self.silver_path / "orders")),
-            "order_items": self.spark.read.parquet(str(self.silver_path / "order_items")),
-            "payments": self.spark.read.parquet(str(self.silver_path / "payments")),
-            "reviews": self.spark.read.parquet(str(self.silver_path / "reviews")),
+            "orders": self.spark.read.parquet(str(self.silver_path / "orders" / f"processing_date={processing_date}")),
+            "order_items": self.spark.read.parquet(str(self.silver_path / "order_items" / f"processing_date={processing_date}")),
+            "payments": self.spark.read.parquet(str(self.silver_path / "payments" / f"processing_date={processing_date}")),
+            "reviews": self.spark.read.parquet(str(self.silver_path / "reviews" / f"processing_date={processing_date}")),
         }
 
         fact = OrdersFact().build(dfs)
 
-        customers = self.spark.read.parquet(str(self.gold_path / "dimensions" / "customers"))
-        dates = self.spark.read.parquet(str(self.gold_path / "dimensions" / "dates"))
-
-        fact = fact.withColumn("order_purchase_date", F.to_date("order_purchase_timestamp"))
-
-        fact = (
-            fact
-            .join(
-                customers.select("customer_id", "customer_id_key"),
-                on="customer_id",
-                how="left"
-            )
-            .join(
-                dates.select("date", "date_key"),
-                F.col("order_purchase_date") == dates["date"],
-                how="left"
-            )
+        lookup_service = DimensionLookupService(
+            spark=self.spark,
+            gold_path=self.gold_path
         )
 
-        output = (
-            fact
-            .withColumnRenamed("customer_id_key", "customer_key")
-            .withColumnRenamed("date_key", "date_key")
-            .select(
-                "order_id",
-                "customer_key",
-                "date_key",
-                "order_status",
-                "order_total_price",
-                "order_total_freight",
-                "total_payment_value",
-                "average_review_score",
-                "review_count",
-                "processing_date",
-                "delivery_days"
-            )
+        output = lookup_service.lookup(fact).select(
+            "order_id",
+            "order_item_id",
+            "customer_key",
+            "seller_key",
+            "product_key",
+            "date_key",
+            "order_status",
+            "price",
+            "freight_value",
+            "item_total",
+            "total_payment_value",
+            "average_review_score",
+            "review_count",
+            "processing_date",
+            "delivery_days"
         )
 
         WarehouseWriter.write_fact(

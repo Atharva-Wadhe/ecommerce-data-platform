@@ -21,17 +21,21 @@ class OrdersFact(BaseFact):
 
         order_items = (
             dfs["order_items"]
-            .groupBy("order_id")
-            .agg(
-                F.sum("price").alias("order_total_price"),
-                F.sum("freight_value").alias("order_total_freight"),
-                F.countDistinct("product_id").alias("distinct_product_count"),
-                F.countDistinct("seller_id").alias("distinct_seller_count")
+            .drop("processing_date")
+            .select(
+                "order_id",
+                "order_item_id",
+                "seller_id",
+                "product_id",
+                "price",
+                "freight_value",
+                "item_total"
             )
         )
 
         payments = (
             dfs["payments"]
+            .drop("processing_date")
             .groupBy("order_id")
             .agg(
                 F.sum("payment_value").alias("total_payment_value")
@@ -40,6 +44,7 @@ class OrdersFact(BaseFact):
 
         reviews = (
             dfs["reviews"]
+            .drop("processing_date")
             .groupBy("order_id")
             .agg(
                 F.avg("review_score").alias("average_review_score"),
@@ -81,11 +86,15 @@ class OrdersFact(BaseFact):
             fact
             .select(
                 "order_id",
+                "order_item_id",
                 "customer_id",
+                "seller_id",
+                "product_id",
                 "order_purchase_timestamp",
                 "order_status",
-                "order_total_price",
-                "order_total_freight",
+                "price",
+                "freight_value",
+                "item_total",
                 "total_payment_value",
                 "average_review_score",
                 "review_count",

@@ -59,7 +59,7 @@ class WarehouseRunner:
 
             try:
                 if table_name in self.dimensions:
-                    result = self.dimension_builder.build(table_name)
+                    result = self.dimension_builder.build(table_name, self.processing_date)
                 else:
                     result = self.fact_builder.build(table_name, self.processing_date)
 

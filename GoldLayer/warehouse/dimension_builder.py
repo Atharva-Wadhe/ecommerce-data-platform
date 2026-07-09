@@ -21,13 +21,14 @@ class DimensionBuilder:
 
     def build(
         self,
-        table_name
+        table_name,
+        processing_date
     ):
 
         if table_name == "dates":
-            silver = self.silver_path / "orders"
+            silver = self.silver_path / "orders" / f"processing_date={processing_date}"
         else:
-            silver = self.silver_path / table_name
+            silver = self.silver_path / table_name / f"processing_date={processing_date}"
 
         df = self.spark.read.parquet(
             str(silver)
