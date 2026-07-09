@@ -24,10 +24,10 @@ class DimensionBuilder:
         table_name
     ):
 
-        silver = (
-            self.silver_path
-            / table_name
-        )
+        if table_name == "dates":
+            silver = self.silver_path / "orders"
+        else:
+            silver = self.silver_path / table_name
 
         df = self.spark.read.parquet(
             str(silver)

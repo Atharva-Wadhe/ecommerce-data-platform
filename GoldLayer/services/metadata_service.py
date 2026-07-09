@@ -3,8 +3,8 @@ from services.postgres_service import PostgresService
 
 class MetadataService:
 
-    def __init__(self):
-        self.db = PostgresService()
+    def __init__(self, config_path: str = "config/config.yaml"):
+        self.db = PostgresService(config_path)
 
     def already_processed(
         self,
