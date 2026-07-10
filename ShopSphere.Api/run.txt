@@ -11,44 +11,6 @@ info: Microsoft.Hosting.Lifetime[14]
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
-      Hosting environment: Development
+      Hosting environment: Production
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api
-info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/1.1 GET http://localhost:5000/api/dashboard/summary?fromDate=2017-10-01&toDate=2017-10-02 - - -
-info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
-      Handling request: GET /api/dashboard/summary
-info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
-      Executing endpoint 'HTTP: GET /api/dashboard/summary'
-info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]
-      Setting HTTP status code 200.
-info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]
-      Writing value of type 'DashboardSummaryResponse' as Json.
-info: ShopSphere.Api.Middleware.RequestTimingMiddleware[0]
-      Request GET /api/dashboard/summary took 556 ms
-info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
-      Executed endpoint 'HTTP: GET /api/dashboard/summary'
-info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
-      Finished handling request: 200
-info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5000/api/dashboard/summary?fromDate=2017-10-01&toDate=2017-10-02 - 200 - application/json;+charset=utf-8 679.4038ms
-info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/1.1 GET http://localhost:5000/api/dashboard/revenue-trend?fromDate=2017-10-01&toDate=2017-10-02 - - -
-info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
-      Handling request: GET /api/dashboard/revenue-trend
-info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
-      Executing endpoint 'HTTP: GET /api/dashboard/revenue-trend'
-info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]
-      Setting HTTP status code 200.
-info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]
-      Writing value of type 'List`1' as Json.
-info: ShopSphere.Api.Middleware.RequestTimingMiddleware[0]
-      Request GET /api/dashboard/revenue-trend took 31 ms
-info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
-      Executed endpoint 'HTTP: GET /api/dashboard/revenue-trend'
-info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
-      Finished handling request: 200
-info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5000/api/dashboard/revenue-trend?fromDate=2017-10-01&toDate=2017-10-02 - 200 - application/json;+charset=utf-8 33.6481ms
-info: Microsoft.Hosting.Lifetime[0]
-      Application is shutting down...
