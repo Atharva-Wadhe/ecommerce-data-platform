@@ -1,0 +1,26 @@
+  Determining projects to restore...
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Dapper (>= 2.1.0) but Dapper 2.1.0 was not found. Dapper 2.1.1 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Npgsql (>= 7.3.1) but Npgsql 7.3.1 was not found. Npgsql 8.0.0 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1903: Package 'Npgsql' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-x9vc-6hfv-hg8c
+  All projects are up-to-date for restore.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Dapper (>= 2.1.0) but Dapper 2.1.0 was not found. Dapper 2.1.1 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Npgsql (>= 7.3.1) but Npgsql 7.3.1 was not found. Npgsql 8.0.0 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1903: Package 'Npgsql' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-x9vc-6hfv-hg8c
+  ShopSphere.Api -> D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\bin\Debug\net10.0\ShopSphere.Api.dll
+
+Build succeeded.
+
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Dapper (>= 2.1.0) but Dapper 2.1.0 was not found. Dapper 2.1.1 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Npgsql (>= 7.3.1) but Npgsql 7.3.1 was not found. Npgsql 8.0.0 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1903: Package 'Npgsql' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-x9vc-6hfv-hg8c
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1510: PackageReference Microsoft.Extensions.Configuration will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Dapper (>= 2.1.0) but Dapper 2.1.0 was not found. Dapper 2.1.1 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1603: ShopSphere.Api depends on Npgsql (>= 7.3.1) but Npgsql 7.3.1 was not found. Npgsql 8.0.0 was resolved instead.
+D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api\ShopSphere.Api.csproj : warning NU1903: Package 'Npgsql' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-x9vc-6hfv-hg8c
+    8 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.44

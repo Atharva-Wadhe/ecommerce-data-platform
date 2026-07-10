@@ -14,3 +14,71 @@ info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Production
 info: Microsoft.Hosting.Lifetime[0]
       Content root path: D:\Data Engineering\ecommerce-data-platform\ShopSphere.Api
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/copilot/chat - application/json 87
+info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
+      Handling request: POST /api/copilot/chat
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'HTTP: POST /api/copilot/chat'
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 35068.9191ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 35079.2895ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 3260.0806ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 3260.286ms - 200
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]
+      Setting HTTP status code 200.
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]
+      Writing value of type 'CopilotChatResponse' as Json.
+info: ShopSphere.Api.Middleware.RequestTimingMiddleware[0]
+      Request POST /api/copilot/chat took 38860 ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'HTTP: POST /api/copilot/chat'
+info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
+      Finished handling request: 200
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/copilot/chat - 200 - application/json;+charset=utf-8 38997.6801ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5000/api/copilot/chat - application/json 87
+info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
+      Handling request: POST /api/copilot/chat
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'HTTP: POST /api/copilot/chat'
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 22026.5004ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 22026.6841ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://integrate.api.nvidia.com/v1/chat/completions
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 14517.874ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 14518.605ms - 200
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[1]
+      Setting HTTP status code 200.
+info: Microsoft.AspNetCore.Http.Result.OkObjectResult[3]
+      Writing value of type 'CopilotChatResponse' as Json.
+info: ShopSphere.Api.Middleware.RequestTimingMiddleware[0]
+      Request POST /api/copilot/chat took 36554 ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'HTTP: POST /api/copilot/chat'
+info: ShopSphere.Api.Middleware.LoggingMiddleware[0]
+      Finished handling request: 200
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5000/api/copilot/chat - 200 - application/json;+charset=utf-8 36555.7549ms

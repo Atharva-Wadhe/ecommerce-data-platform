@@ -8,6 +8,7 @@ public static class EndpointExtensions
     public static IEndpointRouteBuilder MapApiEndpoints(this IEndpointRouteBuilder app)
     {
         app.MapDashboardEndpoints();
+        app.MapCopilotEndpoints();
         return app;
     }
 }

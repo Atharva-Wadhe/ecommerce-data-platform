@@ -12,10 +12,14 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<DatabaseOptions>(configuration.GetSection(DatabaseOptions.SectionName));
+        services.Configure<AiOptions>(configuration.GetSection(AiOptions.SectionName));
 
         services.AddSingleton<DbConnectionFactory>();
         services.AddScoped<DashboardRepository>();
         services.AddScoped<DashboardService>();
+        
+        services.AddHttpClient<AiCopilotService>();
+        services.AddScoped<AiCopilotService>();
 
         return services;
     }
